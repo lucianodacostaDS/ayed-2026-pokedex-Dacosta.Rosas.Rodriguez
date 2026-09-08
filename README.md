@@ -7,8 +7,8 @@ Repositorio del grupo. Partir de este esqueleto. No borrar la estructura de `src
 | Nombre | Mail | GitHub |
 | --- | --- | --- |
 | Sergio Rosas | sergiorosas4083@gmail.com | sergiorosas4083 |
-| Luciano Dacosta |  | lucianodacostaDS |
-| Lautaro Rodríguez |  | Lautaro-rdrgz |
+| Luciano Dacosta | ldacostacienciadedatos@gmail.com | lucianodacostaDS |
+| Lautaro Rodríguez | lautyrodriguez25@gmail.com | Lautaro-rdrgz |
 
 **Tema elegido:** Pokédex
 
