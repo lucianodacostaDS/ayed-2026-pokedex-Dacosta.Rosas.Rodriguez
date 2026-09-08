@@ -1,4 +1,5 @@
 from src.config import TEMA
+from src.dominio.pokedex import listar_catalogo #Desde el archivo pokedex.py, ubicado en dominio traemos la función listar_catalogo para poder usarla en main.py
 
 TEMAS = {
     "pokedex": "Pokédex",
@@ -36,9 +37,11 @@ def main():
     while opcion != "0":
         mostrar_menu()
         opcion = input("> ").strip()
-        if opcion == "0":
+        if opcion == "0": #Presionar 0 para salir
             print("Chau.")
-        elif opcion in {"1", "2", "3", "4", "5", "6", "7", "8", "9"}:
+        elif opcion == "1": #Presionar 1 para activar funcion listar_catalogo()
+            listar_catalogo()
+        elif opcion in {"2", "3", "4", "5", "6", "7", "8", "9"}:
             pendiente()
         else:
             print("Opción inválida.")

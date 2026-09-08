@@ -4,16 +4,25 @@ Completar y hacer crecer en cada entrega. No hace falta prosa larga: oraciones c
 
 ## 1. Grupo y tema
 
-- Tema:
-- Por qué lo eligieron (5–8 líneas):
+- Tema: Pokédex
+- Por qué lo elegimos:
+
+Elegimos la Pokédex porque es un tema conocido y fácil de entender.
+Nos permite representar cada Pokémon mediante datos simples.
+Cada Pokémon puede tener un número, un nombre y un tipo.
+También permite aplicar más adelante búsquedas y ordenamientos.
+Las evoluciones servirán para trabajar con recursión.
+El equipo Pokémon permitirá practicar las estructuras de datos de la materia.
 
 ## 2. Modelo
 
-Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacionan catálogo, colección principal, pila y cola.
-
-```text
-(pueden pegar un diagrama ASCII o una lista de clases)
-```
+Un ítem del catálogo representa un Pokémon.
+Cada Pokémon se guarda en un diccionario con su identificador, nombre y tipo.
+El catálogo es una lista que contiene todos esos diccionarios.
+La lista y los diccionarios son mutables porque se pueden agregar, eliminar o modificar elementos.
+Los números y las cadenas de texto son inmutables porque no se modifican internamente.
+En esta entrega la función `listar_catalogo` recorre la lista y muestra los Pokémon.
+El equipo, la pila y la cola se implementarán en las próximas entregas.
 
 ## 3. Recursión (E2)
 
