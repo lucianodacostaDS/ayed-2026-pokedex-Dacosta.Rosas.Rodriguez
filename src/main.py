@@ -37,9 +37,9 @@ def main():
     while opcion != "0":
         mostrar_menu()
         opcion = input("> ").strip()
-        if opcion == "0": #Presionar 0 para salir
+        if opcion == "0":
             print("Chau.")
-        elif opcion == "1": #Presionar 1 para activar funcion listar_catalogo()
+        elif opcion == "1":
             listar_catalogo()
         elif opcion in {"2", "3", "4", "5", "6", "7", "8", "9"}:
             pendiente()
