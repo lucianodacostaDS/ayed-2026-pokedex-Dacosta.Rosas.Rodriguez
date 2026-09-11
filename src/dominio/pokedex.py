@@ -1,7 +1,7 @@
 """Catálogo manual de Pokémon para la Entrega 1."""
 
 CATALOGO = [
-    {"id": 1, "nombre": "Bulbasaur", "tipo": "Planta/Veneno"}, #{} Diccionario que contiene 3 datos str""
+    {"id": 1, "nombre": "Bulbasaur", "tipo": "Planta/Veneno"}, 
     {"id": 2, "nombre": "Ivysaur", "tipo": "Planta/Veneno"},
     {"id": 3, "nombre": "Venusaur", "tipo": "Planta/Veneno"},
     {"id": 4, "nombre": "Charmander", "tipo": "Fuego"},
@@ -14,7 +14,7 @@ CATALOGO = [
 ] #CATALOGO es una lista donde agregamos todos los pokemon
 
 
-def listar_catalogo():#Funcion
+def listar_catalogo():#Funcion para listar catalogo
     """Muestra todos los Pokémon guardados en el catálogo."""
     print("\n--- Catálogo de Pokémon ---")
 
