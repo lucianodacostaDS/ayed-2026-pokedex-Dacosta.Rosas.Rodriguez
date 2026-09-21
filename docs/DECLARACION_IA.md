@@ -2,15 +2,15 @@
 
 Actualizar **en cada entrega**. Si no usaron IA, dejar una fila que lo diga. No declarar cuando sí se usó anula la entrega.
 
-Fecha de esta versión del archivo: 05/09/2026
+Fecha de esta versión del archivo: 20/09/2026
 
-| Entrega | Fecha | Herramienta (ChatGPT, Cursor, Copilot, otra) | Para qué (diseño, código, debug, docs) | Qué pegaron o generaron | Qué reescribieron / revisaron a mano | Integrante |
-| --- | --- | --- | --- | --- | --- | --- |
-| E1 | 05/09/2026 | ChatGPT | Orientación, código, pruebas y documentación | Configuración del tema, catálogo manual, conexión con el menú e informe | Sergio revisó los cambios paso a paso y probó el programa | Sergio Rosas |
-| E2 |  |  |  |  |  |  |
-| E3 |  |  |  |  |  |  |
-| E4 |  |  |  |  |  |  |
-| E5 |  |  |  |  |  |  |
-| E6 |  |  |  |  |  |  |
+| Entrega | Fecha      | Herramienta (ChatGPT, Cursor, Copilot, otra) | Para qué (diseño, código, debug, docs)                                                                      | Qué pegaron o generaron                                                 | Qué reescribieron / revisaron a mano                      | Integrante        |
+| ------- | ---------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------- | ----------------- |
+| E1      | 05/09/2026 | ChatGPT                                      | Orientación, código, pruebas y documentación                                                                | Configuración del tema, catálogo manual, conexión con el menú e informe | Sergio revisó los cambios paso a paso y probó el programa | Sergio Rosas      |
+| E2      | 20/09/2026 | Claude (Claude Code)                         | Explicación de Python y de la consigna, diseño de las clases, código, corrección de errores y documentación | genero codigo y corrigio errores                                        | corrigió errores de indentación                           | Lautaro Rodríguez |
+| E3      |            |                                              |                                                                                                             |                                                                         |                                                           |                   |
+| E4      |            |                                              |                                                                                                             |                                                                         |                                                           |                   |
+| E5      |            |                                              |                                                                                                             |                                                                         |                                                           |                   |
+| E6      |            |                                              |                                                                                                             |                                                                         |                                                           |                   |
 
 Compromiso: cualquiera del grupo puede explicar cualquier archivo del tag.

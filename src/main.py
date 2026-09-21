@@ -1,5 +1,5 @@
 from src.config import TEMA
-from src.dominio.pokedex import listar_catalogo #Desde el archivo pokedex.py, ubicado en dominio traemos la función listar_catalogo para poder usarla en main.py
+from src.dominio.pokedex import Pokedex, cadena_evolucion
 
 TEMAS = {
     "pokedex": "Pokédex",
@@ -28,10 +28,52 @@ def mostrar_menu():
     print("0. Salir")
 
 
+def pedir_id():
+    texto = input("Id del Pokémon: ").strip()
+    try:
+        return int(texto)
+    except ValueError:
+        print("Ingresá un número entero.")
+        return None
+
+
+def listar_catalogo(dex):
+    print("\n--- Catálogo de Pokémon ---")
+    dex.listar()
+
+
+def ver_detalle(dex):
+    id_pokemon = pedir_id()
+    if id_pokemon is None:
+        return
+    pokemon = dex.buscar(id_pokemon)
+    if pokemon is None:
+        print(f"No existe un Pokémon con id {id_pokemon}.")
+    else:
+        print(pokemon.resumen())
+
+
+def mostrar_cadena_evolucion(dex):
+    id_pokemon = pedir_id()
+    if id_pokemon is None:
+        return
+    cadena = cadena_evolucion(dex, id_pokemon)
+    if not cadena:
+        print(f"No existe un Pokémon con id {id_pokemon}.")
+        return
+    nombres = []
+    for id_en_cadena in cadena:
+        nombres.append(dex.buscar(id_en_cadena).nombre)
+    print(" → ".join(nombres))
+
+
 def main():
     if TEMA not in TEMAS:
         print("Seteá TEMA en src/config.py: 'pokedex', 'recetario' o 'musica'.")
         return
+
+    dex = Pokedex()
+    dex.cargar_datos_iniciales()
 
     opcion = None
     while opcion != "0":
@@ -40,8 +82,12 @@ def main():
         if opcion == "0":
             print("Chau.")
         elif opcion == "1":
-            listar_catalogo()
-        elif opcion in {"2", "3", "4", "5", "6", "7", "8", "9"}:
+            listar_catalogo(dex)
+        elif opcion == "2":
+            ver_detalle(dex)
+        elif opcion == "5":
+            mostrar_cadena_evolucion(dex)
+        elif opcion in {"3", "4", "6", "7", "8", "9"}:
             pendiente()
         else:
             print("Opción inválida.")
