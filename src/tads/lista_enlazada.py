@@ -1,17 +1,33 @@
+from src.tads.nodo import Nodo
+
 class ListaEnlazada:
     """TAD lista enlazada simple. No usar list de Python por debajo."""
 
     def __init__(self):
-        raise NotImplementedError
+        self.cabeza= None
+        self.cantidad= 0
 
     def esta_vacia(self):
-        raise NotImplementedError
+        if self.cabeza is None:
+            return True
+        else:
+            return False
 
     def tamanio(self):
-        raise NotImplementedError
+        return self.cantidad
 
     def insertar_al_inicio(self, dato):
-        raise NotImplementedError
+        nuevo_nodo = Nodo(dato)
+
+        while self.esta_vacia():
+            self.cabeza = nuevo_nodo
+            self.cantidad += 1
+            return
+
+        aux = self.cabeza
+        self.cabeza = nuevo_nodo
+        nuevo_nodo.siguiente = aux       
+        self.cantidad += 1    
 
     def insertar_al_final(self, dato):
         raise NotImplementedError
