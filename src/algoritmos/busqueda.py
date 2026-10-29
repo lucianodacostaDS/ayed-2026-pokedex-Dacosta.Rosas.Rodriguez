@@ -1,6 +1,8 @@
 def busqueda_lineal(coleccion, clave, obtener_clave):
-    """Devuelve el ítem cuya clave coincide, o None."""
-    raise NotImplementedError
+    for item in coleccion:
+        if obtener_clave(item) == clave:
+            return item
+    return None
 
 
 def busqueda_binaria(coleccion_ordenada, clave, obtener_clave):
