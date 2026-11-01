@@ -9,3 +9,4 @@ venv/
 *.dat
 .DS_Store
 Thumbs.db
+prueba.py

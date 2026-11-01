@@ -1,6 +1,12 @@
 from src.config import TEMA
 from src.dominio.pokedex import Pokedex, cadena_evolucion
-from src.algoritmos.busqueda import busqueda_lineal
+from src.algoritmos.busqueda import busqueda_binaria, busqueda_lineal
+from src.algoritmos.ordenamiento import ordenar_insercion, ordenar_seleccion
+
+# Funciones "clave": le dicen a los algoritmos qué mirar de cada Pokémon.
+# El nombre se compara en minúsculas para que "pikachu" y "Pikachu" sean iguales.
+POR_NOMBRE = lambda p: p.nombre.lower()
+POR_HP = lambda p: p.hp
 
 TEMAS = {
     "pokedex": "Pokédex",
@@ -54,11 +60,12 @@ def ver_detalle(dex):
         print(pokemon.resumen())
 
 def buscar_pokemon(dex):
-    print("\n--- Buscar Pokémon (Búsqueda Lineal) ---")
-    print("1. Buscar por ID")
-    print("2. Buscar por Nombre")
+    print("\n--- Buscar Pokémon ---")
+    print("1. Buscar por ID (lineal)")
+    print("2. Buscar por Nombre (lineal)")
+    print("3. Buscar por Nombre (binaria)")
     criterio = input("> ").strip()
-    
+
     if criterio == "1":
         id_pokemon = pedir_id()
         if id_pokemon is None:
@@ -67,6 +74,14 @@ def buscar_pokemon(dex):
     elif criterio == "2":
         nombre = input("Nombre del Pokémon: ").strip().capitalize()
         resultado = busqueda_lineal(dex.pokemons, nombre, lambda p: p.nombre)
+    elif criterio == "3":
+        nombre = input("Nombre del Pokémon: ").strip().lower()
+        # La binaria solo funciona si la lista está ordenada por lo que se busca.
+        # El catálogo está ordenado por id, así que primero se ordena una copia
+        # por nombre (inserción). Así nunca da un falso "no encontrado".
+        print("Ordenando el catálogo por nombre para usar búsqueda binaria...")
+        ordenados = ordenar_insercion(dex.pokemons, POR_NOMBRE)
+        resultado = busqueda_binaria(ordenados, nombre, POR_NOMBRE)
     else:
         print("Opción inválida.")
         return
@@ -76,6 +91,34 @@ def buscar_pokemon(dex):
     else:
         print("¡Encontrado!")
         print(resultado.resumen())
+
+def ordenar_catalogo(dex):
+    print("\n--- Ordenar catálogo ---")
+    print("Ordenar por: 1. Nombre  2. HP")
+    criterio = input("> ").strip()
+    if criterio == "1":
+        clave, nombre_criterio = POR_NOMBRE, "nombre"
+    elif criterio == "2":
+        clave, nombre_criterio = POR_HP, "hp"
+    else:
+        print("Opción inválida.")
+        return
+
+    print("Algoritmo: 1. Selección  2. Inserción")
+    algoritmo = input("> ").strip()
+    if algoritmo == "1":
+        dex.pokemons = ordenar_seleccion(dex.pokemons, clave)
+        nombre_algoritmo = "selección"
+    elif algoritmo == "2":
+        dex.pokemons = ordenar_insercion(dex.pokemons, clave)
+        nombre_algoritmo = "inserción"
+    else:
+        print("Opción inválida.")
+        return
+
+    print(f"Catálogo ordenado por {nombre_criterio} ({nombre_algoritmo}):")
+    dex.listar()
+
 
 def mostrar_cadena_evolucion(dex):
     id_pokemon = pedir_id()
@@ -111,9 +154,11 @@ def main():
             ver_detalle(dex)
         elif opcion == "3":
             buscar_pokemon(dex)
+        elif opcion == "4":
+            ordenar_catalogo(dex)
         elif opcion == "5":
             mostrar_cadena_evolucion(dex)
-        elif opcion in {"4", "6", "7", "8", "9"}:
+        elif opcion in {"6", "7", "8", "9"}:
             pendiente()
         else:
             print("Opción inválida.")

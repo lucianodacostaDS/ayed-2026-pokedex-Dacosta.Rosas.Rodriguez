@@ -77,16 +77,35 @@ Con un Pokémon sin evolución siguiente, por ejemplo Charizard (6), hay una sol
 | --- | --- | --- | --- |
 | Búsqueda Lineal | O(n) | O(1) | Recorre el arreglo elemento por elemento hasta encontrar la clave. No usa memoria extra. |
 | Búsqueda Binaria | O(log n) | O(1) | Divide el espacio de búsqueda a la mitad en cada paso. Requiere que el arreglo esté ordenado. |
-| Ordenamiento (Selección/Inserción) | O(n²) | O(1) | Utilizan dos bucles anidados para comparar e insertar. No requieren memoria auxiliar. |
+| Ordenamiento por selección | O(n²) siempre | O(n) | Dos bucles anidados: para cada posición busca el mínimo en todo lo que queda, aunque la lista ya esté ordenada. Devuelve una copia (por eso O(n) de espacio). No es estable. |
+| Ordenamiento por inserción | O(n) mejor / O(n²) peor | O(n) | Si la lista ya está ordenada, cada elemento hace una sola comparación; si está al revés, cada uno se desplaza hasta el principio. Devuelve una copia. Es estable. |
 
-Mediciones (`time.perf_counter`):
+Uso en el menú:
+
+- **Opción 3 (Buscar):** lineal por id o por nombre, y binaria por nombre. Como el catálogo está ordenado por id, antes de la binaria se ordena una copia por nombre con inserción y se avisa en pantalla. Así la binaria nunca recibe una lista desordenada ni da un falso "no encontrado".
+- **Opción 4 (Ordenar):** por nombre o por hp, con selección o con inserción. Ivysaur y Raichu tienen los dos hp 60: inserción mantiene a Ivysaur antes (estable); selección puede invertirlos.
+
+Mediciones (`time.perf_counter`, script `mediciones.py`, todas en la misma corrida). Búsquedas: peor caso (id que no existe), promedio de 10000 repeticiones; para la binaria la colección agrandada se arma ordenada por id. Ordenamientos: por nombre, promedio de 5 repeticiones; se miden con 12, 120 y 1200 porque con 12000 un algoritmo O(n²) tarda minutos.
 
 | Operación | n | segundos |
 | --- | --- | --- |
-| Búsqueda Lineal (peor caso: clave no encontrada) | 12 | 0.00000450 |
-| Búsqueda Lineal (peor caso: clave no encontrada) | 12000 | 0.00042487 |
+| Búsqueda lineal | 12 | 0.00000076 |
+| Búsqueda lineal | 12000 | 0.00047771 |
+| Búsqueda binaria | 12 | 0.00000035 |
+| Búsqueda binaria | 12000 | 0.00000149 |
+| Ordenar por selección | 12 | 0.00001366 |
+| Ordenar por selección | 120 | 0.00091787 |
+| Ordenar por selección | 1200 | 0.10749854 |
+| Ordenar por inserción | 12 | 0.00000817 |
+| Ordenar por inserción | 120 | 0.00049698 |
+| Ordenar por inserción | 1200 | 0.05064727 |
 
-**Análisis de los resultados:** Los datos empíricos confirman la teoría. Al multiplicar el tamaño de la colección por 1000 (de 12 a 12000), el tiempo de ejecución de la búsqueda lineal aumentó drásticamente, demostrando su comportamiento lineal O(n). La búsqueda binaria, al ser O(log n), se espera que casi no sufra variaciones con este aumento de tamaño (se completará en la próxima entrega con las mediciones de mi compañero).
+**Análisis de los resultados:**
+
+- **Lineal:** al multiplicar n por 1000, el tiempo creció unas 600 veces. Crece proporcional a n: O(n).
+- **Binaria:** al multiplicar n por 1000, el tiempo apenas se multiplicó por 4. Pasar de 12 a 12000 elementos solo agrega unas 10 comparaciones: O(log n).
+- **Ordenamientos:** al multiplicar n por 10, el tiempo se multiplicó por entre 60 y 120. Crece como n²: O(n²).
+- **Inserción vs. selección:** inserción tardó la mitad porque corta el bucle de adentro apenas encuentra el lugar; selección siempre recorre todo lo que queda.
 
 ## 6. Persistencia (E5)
 
