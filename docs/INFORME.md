@@ -62,23 +62,31 @@ Con un Pokémon sin evolución siguiente, por ejemplo Charizard (6), hay una sol
 
 | TAD | Operaciones | Invariante |
 | --- | --- | --- |
-| ListaEnlazada |  |  |
-| Pila |  |  |
-| Cola |  |  |
+| ListaEnlazada | agregar, eliminar, buscar, recorrer, longitud | La cantidad de nodos internos siempre coincide con el tamaño reportado. |
+| Pila | apilar (push), desapilar (pop), tope (peek), esta_vacia | El último elemento en entrar es el primero en salir (LIFO). |
+| Cola | encolar (enqueue), desencolar (dequeue), frente (front), esta_vacia | El primer elemento en entrar es el primero en salir (FIFO). |
 
-Dónde se usa cada uno en el dominio.
+**Dónde se usa cada uno en el dominio:**
+*   **ListaEnlazada:** Se utilizará para manejar el equipo Pokémon (colección principal), permitiendo agregar y quitar Pokémon dinámicamente.
+*   **Pila:** Se utilizará para el historial de acciones (por ejemplo, para poder "deshacer" la última búsqueda o captura).
+*   **Cola:** Se utilizará para gestionar turnos de combate o una cola de espera de acciones.
 
 ## 5. Complejidad (E4)
 
 | Operación | Tiempo | Espacio | Por qué |
 | --- | --- | --- | --- |
-|  |  |  |  |
+| Búsqueda Lineal | O(n) | O(1) | Recorre el arreglo elemento por elemento hasta encontrar la clave. No usa memoria extra. |
+| Búsqueda Binaria | O(log n) | O(1) | Divide el espacio de búsqueda a la mitad en cada paso. Requiere que el arreglo esté ordenado. |
+| Ordenamiento (Selección/Inserción) | O(n²) | O(1) | Utilizan dos bucles anidados para comparar e insertar. No requieren memoria auxiliar. |
 
 Mediciones (`time.perf_counter`):
 
 | Operación | n | segundos |
 | --- | --- | --- |
-|  |  |  |
+| Búsqueda Lineal (peor caso: clave no encontrada) | 12 | 0.00000450 |
+| Búsqueda Lineal (peor caso: clave no encontrada) | 12000 | 0.00042487 |
+
+**Análisis de los resultados:** Los datos empíricos confirman la teoría. Al multiplicar el tamaño de la colección por 1000 (de 12 a 12000), el tiempo de ejecución de la búsqueda lineal aumentó drásticamente, demostrando su comportamiento lineal O(n). La búsqueda binaria, al ser O(log n), se espera que casi no sufra variaciones con este aumento de tamaño (se completará en la próxima entrega con las mediciones de mi compañero).
 
 ## 6. Persistencia (E5)
 

@@ -1,5 +1,6 @@
 from src.config import TEMA
 from src.dominio.pokedex import Pokedex, cadena_evolucion
+from src.algoritmos.busqueda import busqueda_lineal
 
 TEMAS = {
     "pokedex": "Pokédex",
@@ -52,6 +53,29 @@ def ver_detalle(dex):
     else:
         print(pokemon.resumen())
 
+def buscar_pokemon(dex):
+    print("\n--- Buscar Pokémon (Búsqueda Lineal) ---")
+    print("1. Buscar por ID")
+    print("2. Buscar por Nombre")
+    criterio = input("> ").strip()
+    
+    if criterio == "1":
+        id_pokemon = pedir_id()
+        if id_pokemon is None:
+            return
+        resultado = busqueda_lineal(dex.pokemons, id_pokemon, lambda p: p.id)
+    elif criterio == "2":
+        nombre = input("Nombre del Pokémon: ").strip().capitalize()
+        resultado = busqueda_lineal(dex.pokemons, nombre, lambda p: p.nombre)
+    else:
+        print("Opción inválida.")
+        return
+
+    if resultado is None:
+        print("No se encontró ningún Pokémon con ese criterio.")
+    else:
+        print("¡Encontrado!")
+        print(resultado.resumen())
 
 def mostrar_cadena_evolucion(dex):
     id_pokemon = pedir_id()
@@ -85,9 +109,11 @@ def main():
             listar_catalogo(dex)
         elif opcion == "2":
             ver_detalle(dex)
+        elif opcion == "3":
+            buscar_pokemon(dex)
         elif opcion == "5":
             mostrar_cadena_evolucion(dex)
-        elif opcion in {"3", "4", "6", "7", "8", "9"}:
+        elif opcion in {"4", "6", "7", "8", "9"}:
             pendiente()
         else:
             print("Opción inválida.")
