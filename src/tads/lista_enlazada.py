@@ -19,7 +19,7 @@ class ListaEnlazada:
     def insertar_al_inicio(self, dato):
         nuevo_nodo = Nodo(dato)
 
-        while self.esta_vacia():
+        if self.esta_vacia():
             self.cabeza = nuevo_nodo
             self.cantidad += 1
             return
@@ -30,7 +30,18 @@ class ListaEnlazada:
         self.cantidad += 1    
 
     def insertar_al_final(self, dato):
-        raise NotImplementedError
+        nuevo_nodo = Nodo(dato)
+    
+        if self.esta_vacia():
+            self.cabeza = nuevo_nodo
+            self.cantidad += 1
+            return
+
+        actual = self.cabeza
+        while actual.siguiente is not None:
+            actual = actual.siguiente
+        actual.siguiente = nuevo_nodo
+        self.cantidad += 1  
 
     def insertar_ordenado(self, dato, clave):
         raise NotImplementedError
