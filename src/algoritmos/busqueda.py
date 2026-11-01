@@ -6,5 +6,20 @@ def busqueda_lineal(coleccion, clave, obtener_clave):
 
 
 def busqueda_binaria(coleccion_ordenada, clave, obtener_clave):
-    """La colección tiene que estar ordenada por obtener_clave."""
-    raise NotImplementedError
+
+    izquierda = 0
+    derecha = len(coleccion_ordenada) - 1
+
+    while izquierda <= derecha:
+        medio = (izquierda + derecha) // 2
+        item_medio = coleccion_ordenada[medio]
+        clave_medio = obtener_clave(item_medio)
+
+        if clave_medio == clave:
+            return item_medio
+        elif clave_medio < clave:
+            izquierda = medio + 1
+        else:
+            derecha = medio - 1
+
+    return None
